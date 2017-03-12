@@ -30,6 +30,8 @@ def about():
 def profile():
     "some text"
     return render_templater("profile.html")
+    
+
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
