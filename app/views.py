@@ -26,6 +26,11 @@ def about():
     """Render the website's about page."""
     return render_template('about.html')
 
+@app.route("/profile")
+def profile():
+    "some text"
+    return render_templater("profile.html")
+
 @app.route("/login", methods=["GET", "POST"])
 def login():
     form = LoginForm()

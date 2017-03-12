@@ -1,0 +1,39 @@
+#add ginja tags
+#add ginja main tags
+# add form template
+{% extends "base.html"}
+{% block main%}
+<form action="/process" method="post">
+    <div>
+        {{form.username.label}}
+        {{form.username(class='form-control', placeholder="Enter username:"}}
+    </div>
+    <!--<div>
+        <label for="Password">Password:</label>
+    </div> -->
+    <div>
+        {{form.firstname.label}}
+        {{form.firstname(class='form-control', placeholder="Enter Firstname:"}}
+    </div>
+    <div>
+        {{form.lastname.label}}
+        {{form.lastname(class='form-control', placeholder="Enter Lastname:"}}
+    </div>
+    <div>
+        {{form.age.label}}
+        {{form.age(class='form-control', placeholder="Enter Age:"}}
+    </div>
+    <div>
+        {{form.biography.label}}
+        {{form.biography(class='form-control', placeholder="Biography:"}}
+    </div>
+    <div>
+        {{form.gender.label}}
+        {{form.gender(class='form-control', placeholder="Gender:"}}
+    </div>
+    <div>
+        {{form.image.label}}
+        {{form.image(class='form-control', placeholder="Enter image:"}}
+    </div>
+    <button type="submit">Submit</button>
+{%endblock}

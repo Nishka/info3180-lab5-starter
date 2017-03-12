@@ -8,7 +8,7 @@ class LoginForm(FlaskForm):
     
 class dataform(FlaskForm):
     username = StringField('Username', validators=[InputRequired()])
-    password = PasswordField('Password', validators=[InputRequired()])
+   # password = PasswordField('Password', validators=[InputRequired()])
     firstname = StringField('Firstname', validators=[InputRequired()])
     lastname = StringField('Lastname', validators=[InputRequired()])
     age = IntegerField("age",validators=[InputRequired()])
