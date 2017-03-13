@@ -8,8 +8,9 @@ This file creates your application.
 from app import app, db, login_manager
 from flask import render_template, request, redirect, url_for, flash
 from flask_login import login_user, logout_user, current_user, login_required
-from forms import LoginForm
+from forms import LoginForm, ProfileForm
 from models import UserProfile
+from flask import Flask
 
 
 ###
@@ -21,14 +22,15 @@ def home():
     """Render website's home page."""
     return render_template('home.html')
 
-@app.route('/about/')
+@app.route('/about')
 def about():
     """Render the website's about page."""
     return render_template('about.html')
 
 @app.route("/profile", methods = ['GET','POST'])
 def profile():
-    if request.method== "POST":
+    form = ProfileForm()
+    if form.validate_on_submit():
         username= request.form['username']
         id= random.randit[10000000,99999999]
         firstname= request.form['firstname']
@@ -40,8 +42,8 @@ def profile():
         image= secure_filename(file.filename)
         file.save=(os.path.join("app/static/image",image))
         password = generate_password_hash(request.form['password'])
-        joined= datetime.now().strftime(%a,%d,%B,%Y)
-    return render_templater("profile.html")
+        joined= datetime.now().strftime('%Y %b %d')
+    return render_template("profile.html", form=form)
     
 
 

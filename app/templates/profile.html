@@ -1,39 +1,39 @@
-#add ginja tags
-#add ginja main tags
-# add form template
-{% extends "base.html"}
+{% extends "base.html" %}
+{% block page_title %}Profile{% endblock %}
+{% block nav_profile%} class="active"{% endblock %}
 {% block main%}
+<div class="col-xs-10 col-lg-8 col-xs-offset-1 col-lg-offset-2">
 <form action="/process" method="post">
-    <div>
+    <div class="form-group">
         {{form.username.label}}
-        {{form.username(class='form-control', placeholder="Enter username:"}}
+        {{form.username(class='form-control', placeholder="Enter username:")}}
     </div>
     <!--<div>
         <label for="Password">Password:</label>
     </div> -->
-    <div>
+    <div class="form-group">
         {{form.firstname.label}}
-        {{form.firstname(class='form-control', placeholder="Enter Firstname:"}}
+        {{form.firstname(class='form-control', placeholder="Enter Firstname:")}}
     </div>
-    <div>
+    <div class="form-group">
         {{form.lastname.label}}
-        {{form.lastname(class='form-control', placeholder="Enter Lastname:"}}
+        {{form.lastname(class='form-control', placeholder="Enter Lastname:")}}
     </div>
-    <div>
+    <div class="form-group">
         {{form.age.label}}
-        {{form.age(class='form-control', placeholder="Enter Age:"}}
+        {{form.age(class='form-control', placeholder="Enter Age:")}}
     </div>
-    <div>
+    <div class="form-group">
         {{form.biography.label}}
-        {{form.biography(class='form-control', placeholder="Biography:"}}
+        {{form.biography(class='form-control', placeholder="Biography:")}}
     </div>
-    <div>
+    <div class="form-group">
         {{form.gender.label}}
-        {{form.gender(class='form-control', placeholder="Gender:"}}
+        {{form.gender(class='form-control', placeholder="Gender:")}}
     </div>
-    <div>
+    <div class="form-group">
         {{form.image.label}}
-        {{form.image(class='form-control', placeholder="Enter image:"}}
+        {{form.image(class='form-control', placeholder="Enter image:")}}
     </div>
-    <button type="submit">Submit</button>
-{%endblock}
+    <button type="submit" class="btn btn-primary pull-right">Submit</button>
+</div>{%endblock%}

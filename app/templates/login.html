@@ -1,6 +1,8 @@
 {% extends "base.html" %}
 
-{% block main %}
+{% block nav_login%} class="active"{% endblock %}
+
+{% block main %}<div class="col-xs-8 col-lg-4 col-xs-offset-2 col-lg-offset-4">
   <div class="login-form center-block">
     <h2>Please Log in</h2>
     {% include 'flash_messages.html' %}
@@ -17,4 +19,4 @@
       <button type="submit" name="submit" class="btn btn-primary btn-block">Log in</button>
     </form>
   </div>
-{% endblock %}
+</div>{% endblock %}
