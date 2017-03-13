@@ -26,9 +26,21 @@ def about():
     """Render the website's about page."""
     return render_template('about.html')
 
-@app.route("/profile")
+@app.route("/profile", methods = ['GET','POST'])
 def profile():
-    "some text"
+    if request.method== "POST":
+        username= request.form['username']
+        id= random.randit[10000000,99999999]
+        firstname= request.form['firstname']
+        lastname = request.form['lastname']
+        age=request.form['age']
+        biography=request.form['biography']
+        sex=request.form['sex']
+        file = request.file['image']
+        image= secure_filename(file.filename)
+        file.save=(os.path.join("app/static/image",image))
+        password = generate_password_hash(request.form['password'])
+        joined= datetime.now().strftime(%a,%d,%B,%Y)
     return render_templater("profile.html")
     
 
