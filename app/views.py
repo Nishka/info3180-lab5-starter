@@ -11,6 +11,16 @@ from flask_login import login_user, logout_user, current_user, login_required
 from forms import LoginForm, ProfileForm
 from models import UserProfile
 from flask import Flask
+from werkzeug import secure_filename
+import os
+from datetime import date,datetime
+from time import strftime
+from models import UserProfile
+from app import db
+import math
+
+
+
 
 
 ###
@@ -28,7 +38,7 @@ def about():
     return render_template('about.html')
 
 @app.route("/profile", methods = ['GET','POST'])
-def profile():
+def profile_add():
     form = ProfileForm()
     if form.validate_on_submit():
         username= request.form['username']
@@ -41,9 +51,22 @@ def profile():
         file = request.file['image']
         image= secure_filename(file.filename)
         file.save=(os.path.join("app/static/image",image))
-        password = generate_password_hash(request.form['password'])
         joined= datetime.now().strftime('%Y %b %d')
-    return render_template("profile.html", form=form)
+      # return render_template("profile.html", form=form)
+        profile=userprofile(id,username,firstname,lastname,age,biography,sex,image,joined)
+        database.session.add(profile)
+        database.session.commit()
+        flash('user'+'username'+'successfully added!'+'success')
+        flash('please log in','success')
+        return redirect()
+
+@app.route('/profiles/', methods=["GET"])
+def profile_listall():
+    users=db.session.query(UserProfile).all()
+    if request.header['Content-type']=='application/json' || request.method = "POST":
+        users_list=[]
+        
+    
     
 
 
