@@ -18,6 +18,8 @@ from time import strftime
 from models import UserProfile
 from app import db
 import math
+import random
+import user
 
 
 
@@ -42,7 +44,7 @@ def profile_add():
     form = ProfileForm()
     if form.validate_on_submit():
         username= request.form['username']
-        id= random.randit[10000000,99999999]
+        id= random.randint(10000000,99999999)
         firstname= request.form['firstname']
         lastname = request.form['lastname']
         age=request.form['age']
@@ -53,21 +55,30 @@ def profile_add():
         file.save=(os.path.join("app/static/image",image))
         joined= datetime.now().strftime('%Y %b %d')
       # return render_template("profile.html", form=form)
-        profile=userprofile(id,username,firstname,lastname,age,biography,sex,image,joined)
-        database.session.add(profile)
-        database.session.commit()
+        profile=UserProfile(id,username,firstname,lastname,age,biography,sex,image,joined)
+        db.session.add(profile)
+        db.session.commit()
         flash('user'+'username'+'successfully added!'+'success')
         flash('please log in','success')
         return redirect()
+        
+    flash_errors(form)        
+    return render_template('profile.html', form=form)
+
 
 @app.route('/profiles/', methods=["GET"])
 def profile_listall():
     users=db.session.query(UserProfile).all()
-    if request.header['Content-type']=='application/json' || request.method = "POST":
+    if request.header['Content-type'] =='application/json' or request.method == "POST":
         users_list=[]
+
+    
+    
+def flash_errors(form):
+    for field, errors in form.errors.items():
         
-    
-    
+        for error in errors:
+            flash(u"Error in the %s field - %s" % (getattr(form, field).label.text,error), 'danger')        
 
 
 @app.route("/login", methods=["GET", "POST"])
@@ -95,8 +106,8 @@ def login():
 # the user ID stored in the session
 @login_manager.user_loader
 def load_user(id):
-    return UserProfile.query.get(int(id))
-
+  return UserProfile.query.get(int(id))
+    
 ###
 # The functions below should be applicable to all Flask apps.
 ###

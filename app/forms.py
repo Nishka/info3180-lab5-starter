@@ -15,4 +15,5 @@ class ProfileForm(FlaskForm):
     age = IntegerField("age",validators=[InputRequired()])
     biography= StringField('biography',validators= [InputRequired()])
     gender =  SelectField('gender', choices =[('female','female'),('male','male')],validators=[InputRequired()])
-    image = FileField("file", validators=[InputRequired()])
+    image = FileField("file", validators=[InputRequired(),FileAllowed(['jpg,png'], 'Images Only!')])
+  

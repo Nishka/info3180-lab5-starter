@@ -5,6 +5,22 @@ class UserProfile(db.Model):
     first_name = db.Column(db.String(80))
     last_name = db.Column(db.String(80))
     username = db.Column(db.String(80), unique=True)
+    age=db.Column(db.Integer)
+    gender=db.Column(db.String(6))
+    biography=db.Column(db.String(80))
+    image=db.Column(db.LargeBinary)
+    created_on=db.Column(db.DateTime)
+
+    def __init__(self,id,username,firstname, lastname,age,biography,sex,image,created_on):
+            self.id=id
+            self.username=username
+            self.firstname=firstname.title()
+            self.lastname=lastname.title()
+            self.age=age
+            self.biography=biography
+            self.sex = sex.upper()
+            self.image=image
+            self.created_on=created_on
 
     def is_authenticated(self):
         return True
